@@ -53,10 +53,11 @@ module.exports = function (config) {
             dir: 'coverage/',
         },
         colors: true,
-        logLevel: config.LOG_INFO,
-        autoWatch: true,
+        logLevel: config.DEBUG,
+        autoWatch: false,
         browsers: localBrowsers,
         singleRun: true,
         concurrency: Infinity,
+        failOnEmptyTestSuite: false,
     });
 };

@@ -30,6 +30,6 @@ npm link @andresandoval/common --save
 2. Run ```npm version [<newversion> | major | minor | patch | premajor | preminor | prepatch | prerelease
    [--preid=<prerelease-id>] | from-git]``` for generate next package version,
    check https://docs.npmjs.com/cli/version for details
-3. Run ```npm run build```
+3. Run ```npm run build:deploy```
 4. Goto dist folder ```cd dist```
 5. Publish package ```npm publish```

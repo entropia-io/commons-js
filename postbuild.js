@@ -5,6 +5,8 @@ const packageRaw = fs.readFileSync('package.json', 'utf-8');
 const packageJson = JSON.parse(packageRaw);
 delete packageJson['scripts'];
 delete packageJson['devDependencies'];
+delete packageJson['files'];
+delete packageJson['publishConfig'];
 fs.writeFileSync('dist/package.json', JSON.stringify(packageJson));
 
 // Copy .md files

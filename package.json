@@ -12,8 +12,9 @@
     "test": "karma start ./karma.config.js",
     "pretest": "rimraf spec && rimraf coverage && mkdir -p spec",
     "test:single": "ts-node node_modules/jasmine/bin/jasmine.js --config=jasmine.config.json",
-    "prepare": "npm run build",
-    "prepublishOnly": "npm run lint"
+    "preprebuild:prod": "npm run lint",
+    "prebuild:prod": "npm run test",
+    "build:prod": "npm run build"
   },
   "author": "Andres Sandoval <https://github.com/andresandoval>",
   "license": "MIT",
