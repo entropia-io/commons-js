@@ -1,6 +1,6 @@
 {
   "name": "@andresandoval/commons-js",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Common stuff for ts/js projects",
   "main": "index.js",
   "scripts": {
