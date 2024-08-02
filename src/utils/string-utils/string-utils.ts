@@ -1,7 +1,7 @@
 import {isNullOrUndefined} from '../object-utils'
 
 export function isNullOrEmpty(str: string | null | undefined): boolean {
-    return isNullOrUndefined(str) ? true : str.length > 0;
+    return isNullOrUndefined(str) ? true : str.length === 0;
 }
 
 export function trimToNull(str: string): string | null {
