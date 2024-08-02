@@ -24,9 +24,9 @@ export function setStorageValue<T>(key: string, data: T, persist?: boolean): voi
     deleteStorageValue(securedKey);
     const securedData = btoa(JSON.stringify(data));
     if (persist) {
-        localStorage.setItem(key, securedData);
+        localStorage.setItem(securedKey, securedData);
     } else {
-        sessionStorage.setItem(key, securedData);
+        sessionStorage.setItem(securedKey, securedData);
     }
 }
 
