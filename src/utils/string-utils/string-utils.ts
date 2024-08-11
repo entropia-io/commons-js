@@ -47,3 +47,11 @@ export function serializeToQueryParameters(object: Record<string, string>): stri
     }
     return str.join('&');
 }
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export function stringFormat(str: string, ...args: string[]): string {
+    if (!isNullOrEmpty(str) && !!args && args.length > 0) {
+        return str.replace(/{}/g, () => args.shift() ?? '');
+    }
+    return str;
+}
