@@ -1,6 +1,6 @@
 {
-  "name": "@andresandoval/commons-js",
-  "version": "0.0.5",
+  "name": "@entropia-io/commons-js",
+  "version": "0.0.1",
   "description": "Common stuff for ts/js projects",
   "main": "index.js",
   "scripts": {
@@ -23,7 +23,7 @@
     "/dist"
   ],
   "publishConfig": {
-    "registry": "https://npm.pkg.github.com"
+    "registry": "registry.npmjs.org"
   },
   "devDependencies": {
     "@eslint/js": "^9.8.0",

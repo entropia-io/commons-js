@@ -48,10 +48,42 @@ export function serializeToQueryParameters(object: Record<string, string>): stri
     return str.join('&');
 }
 
+/**
+ * Formats a string of form 'project/{}/{}' and replaces
+ * with corresponding arguments ['1234', 'resource']
+ * and returns output: 'project/1234/resource'.
+ *
+ * @param str - The original string where the param need to be
+ *     replaced.
+ * @param params - The optional parameters to replace in the
+ *     string.
+ * @returns The resulting formatted string.
+ */
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export function stringFormat(str: string, ...args: string[]): string {
-    if (!isNullOrEmpty(str) && !!args && args.length > 0) {
-        return str.replace(/{}/g, () => args.shift() ?? '');
+export function formatStringSimple(str: string, ...params: string[]): string {
+    if (!isNullOrEmpty(str) && !!params && params.length > 0) {
+        return str.replace(/{}/g, () => params.shift() ?? '');
     }
     return str;
+}
+
+/**
+ * Formats a string of form 'project/{projectId}/{api}' and replaces
+ * with corresponding arguments {projectId: '1234', api: 'resource'}
+ * and returns output: 'project/1234/resource'.
+ *
+ * @param str - The original string where the param need to be
+ *     replaced.
+ * @param params - The optional parameters to replace in the
+ *     string.
+ * @returns The resulting formatted string.
+ */
+export function formatString(str: string, params?: object): string {
+    let formatted = str;
+    Object.keys(params || {}).forEach((key) => {
+        formatted = formatted.replace(
+            new RegExp('{' + key + '}', 'g'),
+            (params as Record<string, string>)[key]);
+    });
+    return formatted;
 }
