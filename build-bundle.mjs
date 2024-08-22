@@ -32,7 +32,7 @@ function getBuildTargets() {
                 throw new Error(`Missing compilerOptions.target for file '${filePath}'`);
             }
             return {
-                tsconfig: filePath,
+                tsConfig: filePath,
                 target: json.compilerOptions.target.toString().toLowerCase(),
                 outDir: json.compilerOptions.outDir,
             };
