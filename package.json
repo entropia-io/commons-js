@@ -2,31 +2,34 @@
   "name": "@entropia-io/commons-js",
   "version": "0.0.1",
   "description": "Common stuff for ts/js projects",
-  "main": "index.js",
   "scripts": {
     "lint": "eslint .",
-    "build": "tsc",
-    "prebuild": "rimraf dist",
-    "postbuild": "ts-node postbuild.js",
-    "build:watch": "tsc-watch --onSuccess 'npm run postbuild'",
-    "test": "karma start ./karma.config.js",
-    "pretest": "rimraf spec && rimraf coverage && mkdir -p spec",
-    "pretest:single": "rimraf spec/dist && tsc --project tsconfig.spec.json",
-    "test:single": "ts-node node_modules/jasmine/bin/jasmine.js --config=jasmine.config.json",
-    "preprebuild:prod": "npm run lint",
-    "prebuild:prod": "npm run test",
-    "build:prod": "npm run build"
+    "test:karma": "karma start ./karma.config.js",
+    "pretest:karma": "rimraf spec/esnext && rimraf coverage && mkdir -p spec",
+    "test:jasmine": "ts-node -P tsconfig.spec.jasmine.json node_modules/jasmine/bin/jasmine.js --config=jasmine.config.json",
+    "pretest:jasmine": "rimraf spec/es2015",
+    "build:prod": "npm run lint && npm run test:karma && npm run test:jasmine && node build-bundle.mjs"
   },
   "author": "Andres Sandoval <https://github.com/andresandoval>",
   "license": "MIT",
   "files": [
     "/dist"
   ],
+  "exports": {
+    "./browser/utils/storage-utils": "./",
+    "./common/utils/auth-utils": "./",
+    "./common/utils/number-utils": "./",
+    "./common/utils/object-utils": "./",
+    "./common/utils/string-utils": "./",
+    "./node/utils/crypto-utils": "./"
+  },
   "publishConfig": {
     "registry": "registry.npmjs.org"
   },
   "devDependencies": {
     "@eslint/js": "^9.8.0",
+    "@rollup/plugin-node-resolve": "^15.2.3",
+    "@rollup/plugin-typescript": "^11.1.6",
     "@types/eslint__js": "^8.42.3",
     "@types/jasmine": "^5.1.4",
     "@types/node": "^22.0.0",
@@ -42,6 +45,7 @@
     "karma-jasmine": "^5.1.0",
     "karma-webpack": "^5.0.1",
     "rimraf": "^6.0.1",
+    "rollup": "^4.21.0",
     "ts-loader": "^9.5.1",
     "ts-node": "^10.9.2",
     "tsc-watch": "^6.2.0",

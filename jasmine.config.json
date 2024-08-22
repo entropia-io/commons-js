@@ -1,7 +1,7 @@
 {
-  "spec_dir": "spec/dist",
+  "spec_dir": "src",
   "spec_files": [
-    "**/*[sS]pec.?(m)js"
+    "**/*.spec.ts"
   ],
   "helpers": [
     "jasmine.*.?(m)js"

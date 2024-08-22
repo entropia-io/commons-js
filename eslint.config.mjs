@@ -21,10 +21,10 @@ export default [
     {
         ignores: [
             'dist/**',
-            'dist_spec/**',
+            'spec/**',
+            'build-bundle.mjs',
             'jasmine.*.js*',
             'karma.config.js',
-            'postbuild.js',
         ],
     },
 ];

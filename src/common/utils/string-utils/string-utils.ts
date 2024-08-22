@@ -24,7 +24,6 @@ export function isBase64Str(text: string): boolean {
     return true;
 }
 
-
 // eslint-disable-next-line @typescript-eslint/no-inferrable-types
 export function randomString(length: number = 32): string {
     if (isNullOrUndefined(length) || isNaN(length) || length <= 0) {
@@ -59,10 +58,9 @@ export function serializeToQueryParameters(object: Record<string, string>): stri
  *     string.
  * @returns The resulting formatted string.
  */
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function formatStringSimple(str: string, ...params: string[]): string {
     if (!isNullOrEmpty(str) && !!params && params.length > 0) {
-        return str.replace(/{}/g, () => params.shift() ?? '');
+        return str.replace(/{}/g, () => params.shift() ?? '{}');
     }
     return str;
 }
@@ -79,6 +77,9 @@ export function formatStringSimple(str: string, ...params: string[]): string {
  * @returns The resulting formatted string.
  */
 export function formatString(str: string, params?: object): string {
+    if (isNullOrEmpty(str)) {
+        return str;
+    }
     let formatted = str;
     Object.keys(params || {}).forEach((key) => {
         formatted = formatted.replace(
@@ -86,4 +87,43 @@ export function formatString(str: string, params?: object): string {
             (params as Record<string, string>)[key]);
     });
     return formatted;
+}
+
+/**
+ * Check if a string is a valid phone number under E.164 format.<br/>
+ * <b>Conditions:</b>
+ * <ul>
+ * <li>The phone number string must be non-empty and starts with a plus sign.</li>
+ * <li>The phone number string must contain at least one alphanumeric character.</li>
+ * </ul>
+ * @param str the string to be evaluated
+ */
+
+export function isPhoneNumber(str: string): boolean {
+    if (typeof str !== 'string') {
+        return false;
+    }
+    // Phone number validation is very lax here. Backend will enforce E.164
+    // spec compliance and will normalize accordingly.
+    //
+    const re1 = /^\+/;
+    //
+    const re2 = /[\da-zA-Z]+/;
+    return re1.test(str) && re2.test(str);
+}
+
+/**
+ * Check if a string is a valid email address
+ * <b>Conditions:</b>
+ * <ul>
+ * <li>There must at least one character before the @ symbol and another after.</li>
+ * </ul>
+ * @param str the string to be evaluated
+ */
+export function isEmail(str: string): boolean {
+    if (typeof str !== 'string') {
+        return false;
+    }
+    const re = /^[^@]+@[^@]+$/;
+    return re.test(str);
 }

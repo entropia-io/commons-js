@@ -15,7 +15,7 @@ const webpackConfig = {
                 use: {
                     loader: 'ts-loader',
                     options: {
-                        configFile: 'tsconfig.spec.json',
+                        configFile: 'tsconfig.spec.karma.json',
                     },
                 },
                 exclude: /node_modules/,
@@ -41,7 +41,8 @@ module.exports = function (config) {
         basePath: './',
         frameworks: ['jasmine', 'webpack'],
         files: [
-            {pattern: 'src/**/*.spec.ts'},
+            {pattern: 'src/browser/**/*.spec.ts'},
+            {pattern: 'src/common/**/*.spec.ts'},
         ],
         preprocessors: {
             'src/**/*.spec.ts': ['webpack'],

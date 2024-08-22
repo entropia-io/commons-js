@@ -1,5 +1,5 @@
-import {isNullOrEmpty} from '../string-utils';
-import {isNotNullOrUndefined} from '../object-utils';
+import {isNullOrEmpty} from '../../../common/utils/string-utils';
+import {isNotNullOrUndefined} from '../../../common/utils/object-utils';
 
 export function getStorageValue<T>(key: string): T | null {
     if (!isStorageSupported()) {
